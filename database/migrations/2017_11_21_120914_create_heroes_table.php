@@ -17,7 +17,8 @@ class CreateHeroesTable extends Migration
             $table->increments('id');
             $table->string('name', 255);
             $table->string('slug',255)->unique();
-            $table->string('image',255)->default(null);
+            $table->string('image',255)->nullable()->default(null);
+            $table->string('icon',255)->nullable()->default(null);
         });
     }
 
