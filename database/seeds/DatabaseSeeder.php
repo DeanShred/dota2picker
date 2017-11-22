@@ -14,7 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(HeroesTableSeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(HeroesRolesTableSeeder::class);
-
     }
 }
 
@@ -26,17 +25,14 @@ class HeroesTableSeeder extends Seeder
         DB::table('heroes')->insert([
             'name'  => 'Abaddon',
             'slug'  => 'abaddon',
-            'image' => 'img/heroes/abaddon.png'
+            'image' => 'abaddon.png'
         ]);
         DB::table('heroes')->insert([
             'name'  => 'Alchemist',
             'slug'  => 'alchemist',
-            'image' => 'img/heroes/alchemist.png'
+            'image' => 'alchemist.png'
         ]);
-
     }
-
-
 }
 
 class RolesTableSeeder extends Seeder
@@ -76,6 +72,5 @@ class HeroesRolesTableSeeder extends  Seeder
             'role_id'        => '6',
             'predisposition' => '1'
         ]);
-
     }
 }
