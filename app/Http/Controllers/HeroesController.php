@@ -9,27 +9,30 @@ use Illuminate\Http\Request;
 
 class HeroesController extends Controller
 {
+    /**
+     * @return mixed
+     */
     public function index()
     {
         $heroes = Heroes::all('*');
-        $heroesRoles = HeroesRoles::all('*');
-        foreach ($heroesRoles as $hero)
-        {
-            $role = Roles::where('id', $hero->role_id)->first();
-
-            $hero->setCode($role->code);
-        }
+        $heroesRoles = HeroesRoles::roles();
         $title = 'Heroes';
         return view('home')->withHeroes($heroes)->withTitle($title)->withRoles($heroesRoles);
     }
 
+    /**
+     * @param string $slug
+     * @return $this
+     */
     public function show($slug)
     {
         $hero = Heroes::where('slug', $slug)->first();
+        $roles = HeroesRoles::roles($hero->id);
+
         if (!$hero) {
             return redirect('/')->withErrors('Hero not found.');
         }
-        return view('heroes.show')->withHero($hero);
+        return view('hero')->withHero($hero)->withRoles($roles)->withTitle($hero->name);
     }
 
 }

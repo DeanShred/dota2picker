@@ -10,10 +10,9 @@
             @foreach( $heroes as $hero )
                 <div class="list-group">
                     <div class="list-group-item">
-                        <h3><a href="{{ url('/'.$hero->slug) }}">{{ $hero->name }}</a></h3>
-                    </div>
-                    <div class="list-group-item">
-                        <img src="{{ asset("storage/heroes/$hero->image") }}" alt="{{ $hero->name }}"/>
+                        <h3><img src="{{ asset("storage/heroes/$hero->icon ") }}" alt="{{ $hero->name }}"/>
+                            <a href="{{ url('/'.$hero->slug) }}">{{ $hero->name }}</a>
+                        </h3>
                     </div>
                     <div class="list-group-item">
                         @foreach( $roles as $role )
