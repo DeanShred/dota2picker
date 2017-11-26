@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Heroes;
+use App\Hero;
 use App\HeroesRoles;
-use App\Roles;
+use App\Role;
 use Illuminate\Http\Request;
 
 class HeroesController extends Controller
@@ -14,7 +14,7 @@ class HeroesController extends Controller
      */
     public function index()
     {
-        $heroes = Heroes::all('*');
+        $heroes = Hero::all('*');
         $heroesRoles = HeroesRoles::roles();
         $title = 'Heroes';
         return view('home')->withHeroes($heroes)->withTitle($title)->withRoles($heroesRoles);
@@ -26,7 +26,7 @@ class HeroesController extends Controller
      */
     public function show($slug)
     {
-        $hero = Heroes::where('slug', $slug)->first();
+        $hero = Hero::where('slug', $slug)->first();
         $roles = HeroesRoles::roles($hero->id);
 
         if (!$hero) {

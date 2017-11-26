@@ -3,18 +3,17 @@
  * Created by PhpStorm.
  * User: daniiltitov
  * Date: 21.11.17
- * Time: 17:21
+ * Time: 17:24
  */
-
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Heroes extends Model
+class Role extends Model
 {
     protected $guarded = [];
-    public function roles()
+    public function heroes()
     {
-        return $this->hasMany('App\HeroesRoles', 'hero_id');
+        return $this->hasMany('App\HeroesRoles', 'role_id');
     }
 }

@@ -13,22 +13,48 @@
                 </div>
                 <div class="list-group-item">
                     @if( $roles->count() > 0 )
-                        <div class="roles">
-                            <div class="roles-header">
-                                <h4>Roles</h4>
+                        <h4>Roles</h4>
+                        @foreach( $roles as $role )
+                            {{ $role->getCode() }}:
+                            <div class="w3-container w3-grey w3-center"
+                                 style="width:{{ $role->predisposition }}%">{{ $role->predisposition }}%
                             </div>
-                            <div class="roles-content">
-                                @foreach( $roles as $role )
-                                    <p>{{ $role->getCode() }}: {{ $role->predisposition }}</p>
-                                @endforeach
-                            </div>
-                        </div>
+                        @endforeach
                     @endif
-                    <div class="good-with"></div>
-                    <div class="good-vs"></div>
-                    <div class="bad-vs"></div>
+                </div>
+                <div class="list-group-item">
+                    <h4>Good with</h4>
+                    @if( $hero->comrades()->count() > 0 )
+                        @foreach( $hero->comrades() as $comrade )
+                            <div>
+                                <img src="{{ asset("storage/heroes/$comrade->icon ") }}" alt="{{ $comrade->name }}"/>
+                                <a href="{{ url('/'.$comrade->slug) }}">{{ $comrade->name }}</a>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="list-group-item">
+                    <h4>Good vs</h4>
+                    @if( $hero->goodVs()->count() > 0 )
+                        @foreach( $hero->goodVs() as $enemy )
+                            <div>
+                                <img src="{{ asset("storage/heroes/$enemy->icon ") }}" alt="{{ $enemy->name }}"/>
+                                <a href="{{ url('/'.$enemy->slug) }}">{{ $enemy->name }}</a>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="list-group-item">
+                    <h4>Bad vs</h4>
+                    @if( $hero->badVs()->count() > 0 )
+                        @foreach( $hero->badVs() as $enemy )
+                            <div>
+                                <img src="{{ asset("storage/heroes/$enemy->icon ") }}" alt="{{ $enemy->name }}"/>
+                                <a href="{{ url('/'.$enemy->slug) }}">{{ $enemy->name }}</a>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div>
-        </div>
     @endif
 @endsection

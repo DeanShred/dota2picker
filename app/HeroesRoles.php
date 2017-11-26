@@ -22,7 +22,7 @@ class HeroesRoles extends Model
      */
     public function role()
     {
-        return $this->belongsTo('App\Roles', 'id');
+        return $this->belongsTo('App\Role', 'id');
     }
 
     /**
@@ -30,7 +30,7 @@ class HeroesRoles extends Model
      */
     public function hero()
     {
-        return $this->belongsTo('App\Heroes', 'id');
+        return $this->belongsTo('App\Hero', 'id');
     }
 
     /**
@@ -60,6 +60,19 @@ class HeroesRoles extends Model
         foreach ($roles as $hero)
         {
             $hero->setCode($hero->role->code);
+            switch ($hero->predisposition) {
+                case 0 :
+                    break;
+                case 1 :
+                    $hero->predisposition = 33;
+                    break;
+                case 2 :
+                    $hero->predisposition = 66;
+                    break;
+                case 3 :
+                    $hero->predisposition = 100;
+                    break;
+            }
         }
         return $roles;
     }

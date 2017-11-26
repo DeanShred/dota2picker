@@ -17,7 +17,10 @@
                     <div class="list-group-item">
                         @foreach( $roles as $role )
                             @if( $role->hero_id == $hero->id)
-                                <p>{{ $role->getCode() }}: {{ $role->predisposition }}</p>
+                                {{ $role->getCode() }}:
+                                <div class="w3-container w3-grey w3-center"
+                                     style="width:{{ $role->predisposition }}%">{{ $role->predisposition }}%
+                                </div>
                             @endif
                         @endforeach
                     </div>
